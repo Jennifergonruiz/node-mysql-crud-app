@@ -5,6 +5,8 @@ const mysql = require('mysql');
 const path = require('path');
 const app = express();
 
+const {getHomePage} = require('./routes/index');
+const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const port = 5000; 
 
 const db = mysql.createConnection ({
@@ -14,8 +16,6 @@ const db = mysql.createConnection ({
     database: 'socka'
 });
 
-const {getHomePage} = require('./routes/index');
-const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 
 db.connect((err) => {
     if (err) {
@@ -26,7 +26,7 @@ db.connect((err) => {
 global.db = db;
 
 app.set('port', process.env.port || port); 
-app.set('view', __dirname + '/view'); 
+app.set('views', __dirname + '/views'); // Error en nombre del directorio "Views", estaba escrito view.
 app.set('view engine', 'ejs'); 
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json()); 
