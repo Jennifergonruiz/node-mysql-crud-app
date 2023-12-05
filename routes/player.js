@@ -87,7 +87,7 @@ module.exports = {
             }
             res.redirect('/');
         });
-        },
+        },  
         deletePlayer: (req, res) => {
         let playerId = req.params.id;
         let getImageQuery = 'SELECT image from `players` WHERE id = "' + playerId + '"';
